@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "ellethings",
+  "version": "${version}",
+  "name": "ellethings",
+  "description": "Literally just me adding random things to get better at mod development.",
+  "authors": [
+    "ellestuff"
+  ],
+  "contact": {
+    "website": "https://ellestuff.neocities.org",
+    "repo": "https://github.com/ellestuff/ellethings"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/ellethings/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "ellestuff.ellethings.client.EllethingsClient"
+    ],
+    "main": [
+      "ellestuff.ellethings.Ellethings"
+    ]
+  },
+  "mixins": [
+    "ellethings.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "ellestuff.ellethings.client.ElleClient"
+      "ellestuff.ellethings.ElleClient"
     ],
     "main": [
       "ellestuff.ellethings.ElleThings"

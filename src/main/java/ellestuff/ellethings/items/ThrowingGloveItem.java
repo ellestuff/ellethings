@@ -19,12 +19,8 @@ import net.minecraft.world.World;
 
 public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
 
-    public static final Predicate<ItemStack> THROWER_PROJECTILES = (stack) -> {
-        return stack.isOf(Items.SLIME_BALL) ||
-            stack.isOf(Items.SNOWBALL);
-    };
-    public static final int TICKS_PER_SECOND = 20;
-    public static final int RANGE = 10;
+    public static final Predicate<ItemStack> THROWER_PROJECTILES = (stack) -> stack.isOf(Items.SLIME_BALL) ||
+        stack.isOf(Items.SNOWBALL);
 
     public ThrowingGloveItem(Item.Settings settings) {
         super(settings);
@@ -47,26 +43,20 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
 
                         if (itemStack.isOf(Items.SNOWBALL)) {
                             SnowballEntity thrownEntity = new SnowballEntity(world, user);
-                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 2.4F, 1.0F);
-
-                            stack.damage(1, playerEntity, (p) -> {
-                                p.sendToolBreakStatus(playerEntity.getActiveHand());
-                            });
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 2.2F, 1.0F);
 
                             world.spawnEntity(thrownEntity);
-                        } else if (itemStack.isOf(Items.SLIME_BALL)) {
+                        } else {
                             SlimeBallEntity thrownEntity = new SlimeBallEntity(user, world);
-                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 2.4F, 1.0F);
-
-                            stack.damage(1, playerEntity, (p) -> {
-                                p.sendToolBreakStatus(playerEntity.getActiveHand());
-                            });
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 0.8F, 1.4F);
 
                             world.spawnEntity(thrownEntity);
                         }
+
+                        stack.damage(1, playerEntity, (p) -> p.sendToolBreakStatus(playerEntity.getActiveHand()));
                     }
 
-                    world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                     if (!bl2 && !playerEntity.getAbilities().creativeMode) {
                         itemStack.decrement(1);
                         if (itemStack.isEmpty()) {

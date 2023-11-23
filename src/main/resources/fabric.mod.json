@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "ellestuff.ellethings.client.EllethingsClient"
+      "ellestuff.ellethings.client.ElleClient"
     ],
     "main": [
-      "ellestuff.ellethings.Ellethings"
+      "ellestuff.ellethings.ElleThings"
     ]
   },
   "mixins": [

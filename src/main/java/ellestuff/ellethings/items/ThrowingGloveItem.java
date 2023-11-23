@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity.PickupPermission;
+import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
@@ -23,7 +24,7 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
         return stack.isOf(Items.SLIME_BALL);
     };
     public static final int TICKS_PER_SECOND = 20;
-    public static final int RANGE = 15;
+    public static final int RANGE = 10;
 
     public ThrowingGloveItem(Item.Settings settings) {
         super(settings);
@@ -43,32 +44,14 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
                 if (!((double)f < 0.1)) {
                     boolean bl2 = bl && itemStack.isOf(Items.SLIME_BALL);
                     if (!world.isClient) {
-                        ArrowItem thrownItem = (ArrowItem)(itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.SLIME_BALL);
-                        PersistentProjectileEntity persistentProjectileEntity = thrownItem.createArrow(world, itemStack, playerEntity);
-                        persistentProjectileEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 3.0F, 1.0F);
-                        if (f == 1.0F) {
-                            persistentProjectileEntity.setCritical(true);
-                        }
-
-                        int j = EnchantmentHelper.getLevel(Enchantments.POWER, stack);
-                        if (j > 0) {
-                            persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() + (double)j * 0.5 + 0.5);
-                        }
-
-                        int k = EnchantmentHelper.getLevel(Enchantments.PUNCH, stack);
-                        if (k > 0) {
-                            persistentProjectileEntity.setPunch(k);
-                        }
-
-                        if (EnchantmentHelper.getLevel(Enchantments.FLAME, stack) > 0) {
-                            persistentProjectileEntity.setOnFireFor(100);
-                        }
+                        SnowballEntity snowballEntity = new SnowballEntity(world, user);
+                        snowballEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 3.0F, 1.0F);
 
                         stack.damage(1, playerEntity, (p) -> {
                             p.sendToolBreakStatus(playerEntity.getActiveHand());
                         });
 
-                        world.spawnEntity(persistentProjectileEntity);
+                        world.spawnEntity(snowballEntity);
                     }
 
                     world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (world.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
@@ -119,6 +102,6 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
     }
 
     public int getRange() {
-        return 15;
+        return 10;
     }
 }

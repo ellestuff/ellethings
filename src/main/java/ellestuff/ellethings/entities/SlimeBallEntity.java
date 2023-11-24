@@ -11,13 +11,23 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import static ellestuff.ellethings.ElleThings.SLIME_BALL_PROJECTILE;
 
 public class SlimeBallEntity extends ThrownItemEntity {
+
+    private int maxBounces = 2;
+    private int bounces = 0;
+
     public SlimeBallEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -49,15 +59,39 @@ public class SlimeBallEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = entity instanceof BlazeEntity ? 3 : 0;
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float)i);
+        int i = 2;
+        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float)i + bounces);
     }
 
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.getWorld().isClient) {
-            this.getWorld().sendEntityStatus(this, (byte)3);
-            this.discard();
+            if (hitResult.getType() == HitResult.Type.BLOCK && bounces < maxBounces) { // I asked ChatGPT to generate this code T^T
+                BlockHitResult blockHitResult = (BlockHitResult) hitResult;
+
+                // Get the hit face
+                Direction hitFace = blockHitResult.getSide();
+
+                // Convert the hit face to a Vec3d for reflection calculation
+                Vec3d hitNormal = new Vec3d(hitFace.getVector().getX(), hitFace.getVector().getY(), hitFace.getVector().getZ());
+
+                // Calculate the reflection vector using the hit face
+                Vec3d reflectedMotion = this.getVelocity().subtract(hitNormal.multiply(this.getVelocity().dotProduct(hitNormal) * 2.0));
+
+                // Set the new motion for the bouncing effect
+                this.setVelocity(reflectedMotion.multiply(0.9f));
+
+                // You can also play a sound or perform other actions here if needed
+                this.getWorld().playSound(null, BlockPos.ofFloored(this.getPos()), SoundEvents.ENTITY_SLIME_SQUISH_SMALL, SoundCategory.PLAYERS, 1.0F, 1.0F / (getWorld().getRandom().nextFloat() * 0.4F + 1.2F));
+
+                // Optional: Send an entity status to indicate the bounce
+                this.getWorld().sendEntityStatus(this, (byte) 3);
+
+                bounces++;
+            } else {
+                this.getWorld().sendEntityStatus(this, (byte)3);
+                this.discard();
+            }
         }
 
     }

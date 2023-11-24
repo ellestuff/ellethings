@@ -43,12 +43,12 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
 
                         if (itemStack.isOf(Items.SNOWBALL)) {
                             SnowballEntity thrownEntity = new SnowballEntity(world, user);
-                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 2.2F, 1.0F);
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 2.2F, 1F);
 
                             world.spawnEntity(thrownEntity);
                         } else {
                             SlimeBallEntity thrownEntity = new SlimeBallEntity(user, world);
-                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, f * 0.8F, 1.4F);
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 1.4F, 1F);
 
                             world.spawnEntity(thrownEntity);
                         }

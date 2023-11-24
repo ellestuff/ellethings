@@ -79,7 +79,7 @@ public class SlimeBallEntity extends ThrownItemEntity {
                 Vec3d reflectedMotion = this.getVelocity().subtract(hitNormal.multiply(this.getVelocity().dotProduct(hitNormal) * 2.0));
 
                 // Set the new motion for the bouncing effect
-                this.setVelocity(reflectedMotion.multiply(0.9f));
+                this.setVelocity(reflectedMotion.multiply(0.7f));
 
                 // You can also play a sound or perform other actions here if needed
                 this.getWorld().playSound(null, BlockPos.ofFloored(this.getPos()), SoundEvents.ENTITY_SLIME_SQUISH_SMALL, SoundCategory.PLAYERS, 1.0F, 1.0F / (getWorld().getRandom().nextFloat() * 0.4F + 1.2F));

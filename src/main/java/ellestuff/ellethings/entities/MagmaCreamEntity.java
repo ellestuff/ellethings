@@ -3,7 +3,6 @@ package ellestuff.ellethings.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,28 +20,29 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import static ellestuff.ellethings.ElleThings.MAGMA_CREAM_PROJECTILE;
 import static ellestuff.ellethings.ElleThings.SLIME_BALL_PROJECTILE;
 
-public class SlimeBallEntity extends ThrownItemEntity {
+public class MagmaCreamEntity extends ThrownItemEntity {
 
     private int maxBounces = 3;
     private int bounces = 0;
 
-    public SlimeBallEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
+    public MagmaCreamEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public SlimeBallEntity(LivingEntity livingEntity, World world) {
-        super(SLIME_BALL_PROJECTILE, livingEntity, world);
+    public MagmaCreamEntity(LivingEntity livingEntity, World world) {
+        super(MAGMA_CREAM_PROJECTILE, livingEntity, world);
     }
 
     protected Item getDefaultItem() {
-        return Items.SLIME_BALL;
+        return Items.MAGMA_CREAM;
     }
 
     private ParticleEffect getParticleParameters() {
         ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.ITEM_SLIME : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.LAVA : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
     }
 
     public void handleStatus(byte status) {
@@ -59,7 +59,13 @@ public class SlimeBallEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int i = 2;
+        int i = 4;
+
+        if (entity instanceof LivingEntity) {
+            LivingEntity livingEntity = (LivingEntity) entity;
+            livingEntity.setOnFireFor(2);
+        }
+
         entity.damage(this.getDamageSources().thrown(this, this.getOwner()), (float)i + bounces);
     }
 

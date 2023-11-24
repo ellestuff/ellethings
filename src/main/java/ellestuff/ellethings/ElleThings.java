@@ -1,5 +1,6 @@
 package ellestuff.ellethings;
 
+import ellestuff.ellethings.entities.MagmaCreamEntity;
 import ellestuff.ellethings.entities.SlimeBallEntity;
 import ellestuff.ellethings.items.ThrowingGloveItem;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +29,13 @@ public class ElleThings implements ModInitializer {
             Registries.ENTITY_TYPE,
             new Identifier(MODID, "slime_ball"),
             FabricEntityTypeBuilder.<SlimeBallEntity>create(SpawnGroup.MISC, SlimeBallEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
+    );
+
+    public static final EntityType<MagmaCreamEntity> MAGMA_CREAM_PROJECTILE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MODID, "magma_cream"),
+            FabricEntityTypeBuilder.<MagmaCreamEntity>create(SpawnGroup.MISC, MagmaCreamEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
     );
 

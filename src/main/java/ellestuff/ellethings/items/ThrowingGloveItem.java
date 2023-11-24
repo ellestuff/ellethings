@@ -2,6 +2,7 @@ package ellestuff.ellethings.items;
 
 import java.util.function.Predicate;
 
+import ellestuff.ellethings.entities.MagmaCreamEntity;
 import ellestuff.ellethings.entities.SlimeBallEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -44,6 +45,11 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
                         if (itemStack.isOf(Items.SNOWBALL)) {
                             SnowballEntity thrownEntity = new SnowballEntity(world, user);
                             thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 2.2F, 1F);
+
+                            world.spawnEntity(thrownEntity);
+                        } else if (itemStack.isOf(Items.MAGMA_CREAM)) {
+                            MagmaCreamEntity thrownEntity = new MagmaCreamEntity(user, world);
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 0.8F, 1F);
 
                             world.spawnEntity(thrownEntity);
                         } else {

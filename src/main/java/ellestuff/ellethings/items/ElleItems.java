@@ -18,6 +18,8 @@ public class ElleItems {
             .maxCount(1)
             .maxDamage(500)
             .fireproof()));
+    public static final Item GELATITE = registerItem("gelatite", new Item(new Item.Settings()));
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(ElleThings.MODID, name), item);
@@ -28,6 +30,11 @@ public class ElleItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(content -> {
             content.addAfter(Items.BOW, THROWING_GLOVE);
             content.addAfter(THROWING_GLOVE, NETHERITE_THROWING_GLOVE);
+        });
+
+        // Ingredients Group
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> {
+            content.addAfter(Items.EMERALD, GELATITE);
         });
     }
 }

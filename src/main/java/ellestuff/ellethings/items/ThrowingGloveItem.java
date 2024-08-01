@@ -2,6 +2,7 @@ package ellestuff.ellethings.items;
 
 import java.util.function.Predicate;
 
+import ellestuff.ellethings.entities.FireworkStarEntity;
 import ellestuff.ellethings.entities.MagmaCreamEntity;
 import ellestuff.ellethings.entities.SlimeBallEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,6 +11,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -20,7 +23,8 @@ import net.minecraft.world.World;
 
 public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
 
-    public static final Predicate<ItemStack> THROWER_PROJECTILES = (stack) -> stack.isOf(Items.SLIME_BALL) ||
+    public static final Predicate<ItemStack> THROWER_PROJECTILES = (stack) ->
+        stack.isOf(Items.SLIME_BALL) ||
         stack.isOf(Items.SNOWBALL);
 
     public ThrowingGloveItem(Item.Settings settings) {
@@ -49,6 +53,11 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
                             world.spawnEntity(thrownEntity);
                         } else if (itemStack.isOf(Items.MAGMA_CREAM)) {
                             MagmaCreamEntity thrownEntity = new MagmaCreamEntity(user, world);
+                            thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 0.8F, 1F);
+
+                            world.spawnEntity(thrownEntity);
+                        } else if (itemStack.isOf(Items.FIREWORK_STAR)) {
+                            FireworkStarEntity thrownEntity = new FireworkStarEntity(user, itemStack, world);
                             thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 0.8F, 1F);
 
                             world.spawnEntity(thrownEntity);

@@ -1,5 +1,6 @@
 package ellestuff.ellethings;
 
+import ellestuff.ellethings.entities.FireworkStarEntity;
 import ellestuff.ellethings.entities.MagmaCreamEntity;
 import ellestuff.ellethings.entities.SlimeBallEntity;
 import net.fabricmc.api.ModInitializer;
@@ -11,10 +12,14 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import static ellestuff.ellethings.items.ElleItems.registerElleItems;
 
 public class ElleThings implements ModInitializer {
     public static final String MODID = "ellethings";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public static final EntityType<SlimeBallEntity> SLIME_BALL_PROJECTILE = Registry.register(
             Registries.ENTITY_TYPE,
@@ -27,6 +32,13 @@ public class ElleThings implements ModInitializer {
             Registries.ENTITY_TYPE,
             new Identifier(MODID, "magma_cream"),
             FabricEntityTypeBuilder.<MagmaCreamEntity>create(SpawnGroup.MISC, MagmaCreamEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
+    );
+
+    public static final EntityType<FireworkStarEntity> FIREWORK_STAR_PROJECTILE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(MODID, "firework_star"),
+            FabricEntityTypeBuilder.<FireworkStarEntity>create(SpawnGroup.MISC, FireworkStarEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
     );
 

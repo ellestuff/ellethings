@@ -21,7 +21,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import static ellestuff.ellethings.ElleThings.MAGMA_CREAM_PROJECTILE;
-import static ellestuff.ellethings.ElleThings.SLIME_BALL_PROJECTILE;
 
 public class MagmaCreamEntity extends ThrownItemEntity {
 

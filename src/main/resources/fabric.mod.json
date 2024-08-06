@@ -15,6 +15,9 @@
   "icon": "assets/ellethings/icon.png",
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "ellestuff.ellethings.ElleDataGen"
+    ],
     "client": [
       "ellestuff.ellethings.ElleClient"
     ],

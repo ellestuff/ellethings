@@ -19,6 +19,19 @@ import java.util.Map;
 public class ElleTrimMaterials {
     public static final RegistryKey<ArmorTrimMaterial> GELATITE = of("gelatite");
 
+    public static void bootstrap(Registerable<ArmorTrimMaterial> registry) {
+        register(registry, GELATITE, ElleItems.GELATITE, Style.EMPTY.withColor(16733097), 0.12F);
+    }
+
+    private static void register(Registerable<ArmorTrimMaterial> registry, RegistryKey<ArmorTrimMaterial> key, Item ingredient, Style style, float itemModelIndex) {
+        register(registry, key, ingredient, style, itemModelIndex, Map.of());
+    }
+
+    private static void register(Registerable<ArmorTrimMaterial> registry, RegistryKey<ArmorTrimMaterial> key, Item ingredient, Style style, float itemModelIndex, Map<ArmorMaterials, String> overrideArmorMaterials) {
+        ArmorTrimMaterial armorTrimMaterial = ArmorTrimMaterial.of(key.getValue().getPath(), ingredient, itemModelIndex, Text.translatable(Util.createTranslationKey("trim_material", key.getValue())).fillStyle(style), overrideArmorMaterials);
+        registry.register(key, armorTrimMaterial);
+    }
+
     private static RegistryKey<ArmorTrimMaterial> of(String id) {
         return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, new Identifier(ElleThings.MODID, id));
     }

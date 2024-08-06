@@ -14,6 +14,6 @@ public class ElleDataGen implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ElleTrimMaterials::bootstrapType);
+        registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ElleTrimMaterials::bootstrap);
     }
 }

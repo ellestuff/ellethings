@@ -17,7 +17,7 @@ import net.minecraft.util.Util;
 import java.util.Map;
 
 public class ElleTrimMaterials {
-    public static final RegistryKey<ArmorTrimMaterial> GELATITE = of("gelatite");
+    public static final RegistryKey<ArmorTrimMaterial> GELATITE = of("ellethings:gelatite");
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registry) {
         register(registry, GELATITE, ElleItems.GELATITE, Style.EMPTY.withColor(16733097), 0.12F);

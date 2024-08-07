@@ -1,0 +1,9 @@
+{
+  "asset_name": "gelatite",
+  "description": {
+    "color": "#FF53A9",
+    "translate": "trim_material.ellethings.gelatite"
+  },
+  "ingredient": "ellethings:gelatite",
+  "item_model_index": 0.12
+}

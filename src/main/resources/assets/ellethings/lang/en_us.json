@@ -2,9 +2,13 @@
   "item.ellethings.throwing_glove": "Throwing Glove",
   "item.ellethings.netherite_throwing_glove": "Netherite Throwing Glove",
 
+  "item.ellethings.slime_staff": "Slime Staff",
+
   "item.ellethings.gelatite": "Gelatite",
 
   "entity.ellethings.slime_ball": "Slimeball",
   "entity.ellethings.magma_cream": "Magma Cream",
-  "entity.ellethings.firework_star": "Firework Star"
+  "entity.ellethings.firework_star": "Firework Star",
+
+  "block.ellethings.gelatite_block": "Gelatite Block"
 }

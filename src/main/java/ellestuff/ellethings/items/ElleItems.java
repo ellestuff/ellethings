@@ -11,13 +11,22 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ElleItems {
+    // Throwing Gloves
     public static final Item THROWING_GLOVE = registerItem("throwing_glove", new ThrowingGloveItem(new FabricItemSettings()
             .maxCount(1)
             .maxDamage(200)));
+
     public static final Item NETHERITE_THROWING_GLOVE = registerItem("netherite_throwing_glove", new NetheriteGloveItem(new FabricItemSettings()
             .maxCount(1)
             .maxDamage(500)
             .fireproof()));
+
+    // Slime Staff
+    public static final Item SLIME_STAFF = registerItem("slime_staff", new SlimeStaffItem(new FabricItemSettings()
+            .maxCount(1)
+            .maxDamage(180)));
+
+    // Regular ass items lmao
     public static final Item GELATITE = registerItem("gelatite", new Item(new Item.Settings()));
 
 

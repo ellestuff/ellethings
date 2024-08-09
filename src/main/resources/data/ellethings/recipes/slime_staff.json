@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " GS",
+        " /G",
+        "G  "
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:slime_block"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        },
+        "G": {
+            "item": "ellethings:gelatite"
+        }
+    },
+    "result": {
+        "item": "ellethings:slime_staff",
+        "count": 1
+    }
+}

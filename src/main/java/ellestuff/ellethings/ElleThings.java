@@ -15,6 +15,7 @@ import net.minecraft.util.Identifier;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
+import static ellestuff.ellethings.blocks.ElleBlocks.registerElleBlocks;
 import static ellestuff.ellethings.items.ElleItems.registerElleItems;
 
 public class ElleThings implements ModInitializer {
@@ -45,5 +46,6 @@ public class ElleThings implements ModInitializer {
     @Override
     public void onInitialize() {
         registerElleItems();
+        registerElleBlocks();
     }
 }

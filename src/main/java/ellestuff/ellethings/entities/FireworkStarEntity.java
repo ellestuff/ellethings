@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static ellestuff.ellethings.ElleThings.FIREWORK_STAR_PROJECTILE;
+import static java.lang.Math.random;
 
 public class FireworkStarEntity extends ThrownItemEntity {
     private ItemStack starItem;
@@ -42,8 +43,9 @@ public class FireworkStarEntity extends ThrownItemEntity {
 
     }
 
-    public FireworkStarEntity(LivingEntity livingEntity, World world) {
+    public FireworkStarEntity(LivingEntity livingEntity, World world, ItemStack starItem) {
         super(FIREWORK_STAR_PROJECTILE, livingEntity, world);
+        this.setStarItem(starItem);
     }
 
     protected Item getDefaultItem() {
@@ -89,8 +91,11 @@ public class FireworkStarEntity extends ThrownItemEntity {
 
         if (this.getWorld().isClient) {
             if (rocket != null) {
-                this.getWorld().addFireworkParticle(this.getX(), this.getY(), this.getZ(), vec3d.x, vec3d.y, vec3d.z, rocket);
+                this.getWorld().addFireworkParticle(vec3d.x, vec3d.y, vec3d.z, 0, 0, 0, rocket);
             } else {
+                for (int i = 0; i < 2; i++) {
+                    this.getWorld().addParticle(ParticleTypes.SMOKE, vec3d.x, vec3d.y, vec3d.z, ((random()-0.5)/10), ((random()-0.5)/10), ((random()-0.5)/10));
+                }
                 System.err.println("Rocket is null on client side");
             }
         }
@@ -99,7 +104,7 @@ public class FireworkStarEntity extends ThrownItemEntity {
             List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
             Iterator var9 = list.iterator();
 
-            while(true) {
+            while(rocket != null) {
                 LivingEntity livingEntity;
                 do {
                     if (!var9.hasNext()) {

@@ -21,7 +21,7 @@ import static ellestuff.ellethings.items.ElleItems.registerElleItems;
 public class ElleThings implements ModInitializer {
     public static final String MODID = "ellethings";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
-
+//test
     public static final EntityType<SlimeBallEntity> SLIME_BALL_PROJECTILE = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MODID, "slime_ball"),

@@ -35,76 +35,75 @@ import static ellestuff.ellethings.ElleThings.FIREWORK_STAR_PROJECTILE;
 import static java.lang.Math.random;
 
 public class FireworkStarEntity extends ThrownItemEntity {
-    private ItemStack starItem;
-    private NbtCompound rocket;
+    private static final TrackedData<NbtCompound> FIREWORK_NBT = DataTracker.registerData(FireworkStarEntity.class, TrackedDataHandlerRegistry.NBT_COMPOUND);
 
     public FireworkStarEntity(EntityType<? extends ThrownItemEntity> entityType, World world) {
         super(entityType, world);
-
     }
 
     public FireworkStarEntity(LivingEntity livingEntity, World world, ItemStack starItem) {
         super(FIREWORK_STAR_PROJECTILE, livingEntity, world);
-        this.setStarItem(starItem);
+        this.setRocketNbtFromItem(starItem);
     }
 
     protected Item getDefaultItem() {
         return Items.FIREWORK_STAR;
     }
 
-    private ParticleEffect getParticleParameters() {
-        ItemStack itemStack = this.getItem();
-        return (ParticleEffect)(itemStack.isEmpty() ? ParticleTypes.FIREWORK : new ItemStackParticleEffect(ParticleTypes.ITEM, itemStack));
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(FIREWORK_NBT, new NbtCompound()); // Initialize with an empty NBT compound
     }
 
-    public void handleStatus(byte status) {
-        if (status == 3) {
-            ParticleEffect particleEffect = this.getParticleParameters();
+    public void setRocketNbt(NbtCompound nbt) {
+        this.dataTracker.set(FIREWORK_NBT, nbt); // Sync the NBT data with the DataTracker
+    }
 
-            for(int i = 0; i < 8; ++i) {
-                this.getWorld().addParticle(particleEffect, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+    public NbtCompound getRocketNbt() {
+        return this.dataTracker.get(FIREWORK_NBT); // Get the NBT data from the DataTracker
+    }
+
+    public void setRocketNbtFromItem(ItemStack stack) {
+        if (stack.getItem() instanceof FireworkStarItem) {
+            NbtCompound starItemNbt = stack.getNbt();
+            if (starItemNbt != null && starItemNbt.contains("Explosion")) {
+                NbtCompound explosionNbt = starItemNbt.getCompound("Explosion");
+
+                NbtCompound rocketNbt = new NbtCompound();
+                NbtList explosions = new NbtList();
+                explosions.add(explosionNbt);
+                rocketNbt.put("Explosions", explosions);
+
+                setRocketNbt(rocketNbt); // Store and sync the NBT data
             }
         }
-
     }
 
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        super.onEntityHit(entityHitResult);
-        goBoom();
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.put("Fireworks", this.getRocketNbt()); // Save the NBT data
     }
 
-    protected void onCollision(HitResult hitResult) {
-        super.onCollision(hitResult);
-        goBoom();
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        if (nbt.contains("Fireworks")) {
+            this.setRocketNbt(nbt.getCompound("Fireworks")); // Load the NBT data
+        }
     }
 
     private void goBoom() {
+        NbtCompound explosionNbt = this.getRocketNbt();
         Vec3d vec3d = this.getPos();
-
-        System.out.println(rocket);
-
-        if (rocket == null) {
-            System.err.println("Rocket is null in goBoom");
-        } else {
-            System.out.println("Rocket is not null in goBoom: " + rocket);
-        }
-
-        if (this.getWorld().isClient) {
-            if (rocket != null) {
-                this.getWorld().addFireworkParticle(vec3d.x, vec3d.y, vec3d.z, 0, 0, 0, rocket);
-            } else {
-                for (int i = 0; i < 2; i++) {
-                    this.getWorld().addParticle(ParticleTypes.SMOKE, vec3d.x, vec3d.y, vec3d.z, ((random()-0.5)/10), ((random()-0.5)/10), ((random()-0.5)/10));
-                }
-                System.err.println("Rocket is null on client side");
-            }
-        }
-        else {
+        System.err.println(explosionNbt);
+        if (!this.getWorld().isClient && !(explosionNbt == null || explosionNbt.isEmpty())) {
             // literally just copypasted this off the firework code, with a few tweaks
             List<LivingEntity> list = this.getWorld().getNonSpectatingEntities(LivingEntity.class, this.getBoundingBox().expand(5.0));
             Iterator var9 = list.iterator();
 
-            while(rocket != null) {
+            while(getRocketNbt() != null) {
                 LivingEntity livingEntity;
                 do {
                     if (!var9.hasNext()) {
@@ -112,7 +111,7 @@ public class FireworkStarEntity extends ThrownItemEntity {
                     }
 
                     livingEntity = (LivingEntity)var9.next();
-                } while(this.squaredDistanceTo(livingEntity) > 25.0);
+                } while(this.squaredDistanceTo(livingEntity) > 16.0);
 
                 boolean bl = false;
 
@@ -126,59 +125,43 @@ public class FireworkStarEntity extends ThrownItemEntity {
                 }
 
                 if (bl) {
-                    float g = 5 * (float)Math.sqrt((5.0 - (double)this.distanceTo(livingEntity)) / 5.0);
+                    float g = 4 * (float)Math.sqrt((4.0 - (double)this.distanceTo(livingEntity)) / 4.0);
                     livingEntity.damage(this.getDamageSources().thrown(this, this.getOwner()), g);
 
                 }
-
-                this.discard();
             }
-        }
-    }
 
-    // i have no idea what i'm doing here so i asked chatgpt T~T
-
-    public void setStarItem(ItemStack stack) {
-        this.starItem = stack.copy();
-        System.out.println("Star Item set: " + this.starItem);
-        if (this.starItem.getItem() instanceof FireworkStarItem) {
-            NbtCompound starItemNbt = this.starItem.getNbt();
-            if (starItemNbt != null && starItemNbt.contains("Explosion")) {
-                rocket = new NbtCompound();
-                NbtList explosions = new NbtList();
-                NbtCompound explosionData = starItemNbt.getCompound("Explosion");
-                explosions.add(explosionData);
-                rocket.put("Explosions", explosions);
-            }
         }
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        System.out.println("Writing NBT data");
-        if (rocket != null) {
-            nbt.put("Fireworks", rocket);
-            System.out.println("NBT written: " + nbt);
+    public void handleStatus(byte status) {
+        if (status == 3) { // Custom status ID
+            NbtCompound explosionNbt = this.getRocketNbt();
+            Vec3d vec3d = this.getPos();
+            if (explosionNbt == null || explosionNbt.isEmpty()) {
+                this.getWorld().addParticle(ParticleTypes.POOF, vec3d.x, vec3d.y, vec3d.z, 0,0,0);
+            } else {
+                this.getWorld().addFireworkParticle(vec3d.x, vec3d.y, vec3d.z, 0, 0, 0, explosionNbt); // Add firework particles using the NBT data
+            }
         }
     }
 
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        System.out.println("Reading NBT data");
-        if (nbt.contains("Fireworks")) {
-            rocket = nbt.getCompound("Fireworks");
-            System.out.println("Rocket NBT read: " + rocket);
-            NbtList explosions = rocket.getList("Explosions", 10);
-            if (!explosions.isEmpty()) {
-                // Assuming the first compound in the list is the correct explosion data
-                NbtCompound explosionData = explosions.getCompound(0);
-                ItemStack itemStack = new ItemStack(Items.FIREWORK_STAR);
-                itemStack.setNbt(explosionData);  // Set the NBT data to the itemStack
-                this.starItem = itemStack;
-                System.out.println("Star Item read from NBT: " + this.starItem);
-            }
+    private void triggerExplosion() {
+        if (!this.getWorld().isClient) {
+            this.getWorld().sendEntityStatus(this, (byte) 3);
         }
+        goBoom();
+        this.discard();
+    }
+
+    protected void onCollision(HitResult hitResult) {
+        super.onCollision(hitResult);
+        triggerExplosion();
+    }
+
+    protected void onEntityHit(EntityHitResult entityHitResult) {
+        super.onEntityHit(entityHitResult);
+        triggerExplosion();
     }
 }

@@ -68,23 +68,12 @@ public class SlimeBallEntity extends ThrownItemEntity {
         if (!this.getWorld().isClient) {
             if (hitResult.getType() == HitResult.Type.BLOCK && bounces < maxBounces) { // I asked ChatGPT to generate this code T^T
                 BlockHitResult blockHitResult = (BlockHitResult) hitResult;
-
-                // Get the hit face
                 Direction hitFace = blockHitResult.getSide();
-
-                // Convert the hit face to a Vec3d for reflection calculation
                 Vec3d hitNormal = new Vec3d(hitFace.getVector().getX(), hitFace.getVector().getY(), hitFace.getVector().getZ());
-
-                // Calculate the reflection vector using the hit face
                 Vec3d reflectedMotion = this.getVelocity().subtract(hitNormal.multiply(this.getVelocity().dotProduct(hitNormal) * 2.0));
 
-                // Set the new motion for the bouncing effect
                 this.setVelocity(reflectedMotion.multiply(0.7f));
-
-                // You can also play a sound or perform other actions here if needed
                 this.getWorld().playSound(null, BlockPos.ofFloored(this.getPos()), SoundEvents.ENTITY_SLIME_SQUISH_SMALL, SoundCategory.PLAYERS, 1.0F, 1.0F / (getWorld().getRandom().nextFloat() * 0.4F + 1.2F));
-
-                // Optional: Send an entity status to indicate the bounce
                 this.getWorld().sendEntityStatus(this, (byte) 3);
 
                 bounces++;

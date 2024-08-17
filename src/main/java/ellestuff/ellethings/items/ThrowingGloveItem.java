@@ -59,7 +59,6 @@ public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
                         } else if (itemStack.isOf(Items.FIREWORK_STAR)) {
                             FireworkStarEntity thrownEntity = new FireworkStarEntity(user, world, itemStack);
                             thrownEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0F, f * 0.8F, 1F);
-                            thrownEntity.setStarItem(itemStack);
 
                             world.spawnEntity(thrownEntity);
                         } else {

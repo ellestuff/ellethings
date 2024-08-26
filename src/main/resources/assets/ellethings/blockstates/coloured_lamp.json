@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "power=0": {
+      "model": "ellethings:block/coloured_lamp_black"
+    },
+    "power=1": {
+      "model": "ellethings:block/coloured_lamp_grey"
+    },
+    "power=2": {
+      "model": "ellethings:block/coloured_lamp_light_grey"
+    },
+    "power=3": {
+      "model": "ellethings:block/coloured_lamp_white"
+    },
+    "power=4": {
+      "model": "ellethings:block/coloured_lamp_brown"
+    },
+    "power=5": {
+      "model": "ellethings:block/coloured_lamp_red"
+    },
+    "power=6": {
+      "model": "ellethings:block/coloured_lamp_orange"
+    },
+    "power=7": {
+      "model": "ellethings:block/coloured_lamp_yellow"
+    },
+    "power=8": {
+      "model": "ellethings:block/coloured_lamp_lime"
+    },
+    "power=9": {
+      "model": "ellethings:block/coloured_lamp_green"
+    },
+    "power=10": {
+      "model": "ellethings:block/coloured_lamp_cyan"
+    },
+    "power=11": {
+      "model": "ellethings:block/coloured_lamp_light_blue"
+    },
+    "power=12": {
+      "model": "ellethings:block/coloured_lamp_blue"
+    },
+    "power=13": {
+      "model": "ellethings:block/coloured_lamp_purple"
+    },
+    "power=14": {
+      "model": "ellethings:block/coloured_lamp_magenta"
+    },
+    "power=15": {
+      "model": "ellethings:block/coloured_lamp_pink"
+    }
+  }
+}

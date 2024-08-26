@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " D ",
+        "LGL",
+        " D "
+    ],
+    "key": {
+        "D": {
+            "tag": "c:dyes"
+        },
+        "L": {
+            "item": "minecraft:redstone_lamp"
+        },
+        "G": {
+            "item": "ellethings:gelatite"
+        }
+    },
+    "result": {
+        "item": "ellethings:coloured_lamp",
+        "count": 2
+    }
+}

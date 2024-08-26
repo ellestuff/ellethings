@@ -13,12 +13,18 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ElleBlocks {
     public static final Block GELATITE_BLOCK = registerBlock("gelatite_block",
             new Block(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK)
                     .mapColor(MapColor.PINK)));
+
+    public static final Block COLOURED_LAMP = registerBlock("coloured_lamp",
+            new ColouredLampBlock(FabricBlockSettings.create().luminance(ColouredLampBlock.STATE_TO_LUMINANCE).strength(0.3F).sounds(BlockSoundGroup.GLASS).allowsSpawning(Blocks::always)));
+
+
 
     public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

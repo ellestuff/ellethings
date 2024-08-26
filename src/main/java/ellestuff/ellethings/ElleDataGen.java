@@ -10,12 +10,5 @@ import net.minecraft.registry.RegistryKeys;
 public class ElleDataGen implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
-        FabricDataGenerator.Pack pack = generator.createPack();
-        pack.addProvider(ElleTrimMaterialsProvider::new);
-    }
-
-    @Override
-    public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ElleTrimMaterials::bootstrap);
     }
 }

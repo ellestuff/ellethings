@@ -1,6 +1,7 @@
 package ellestuff.ellethings.items;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +15,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
@@ -56,14 +58,28 @@ public class SlimeStaffItem extends Item {
             if (!world.isClient) {
                 world.playSound((PlayerEntity)null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SLIME_SQUISH , SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 
-                user.getItemCooldownManager().set(this, 100);
-
                 SlimeEntity slime = EntityType.SLIME.create(world);
 
                 slime.refreshPositionAndAngles(pos.x, pos.y, pos.z, 0, 0);
                 slime.setSize(0, true);
+                EntityDimensions slimeSize = slime.getDimensions(slime.getPose());
+                double slimeRadius = slimeSize.width * 0.5;
+                
+                for (int cz = -1; cz <= 1; cz += 2) {
+                    for (int cx = -1; cx <= 1; cx += 2) {
+                        for (int cy = 0; cy <= 1; cy += 1) {
+                            if (solidCheck(world, pos.x + (cx * slimeRadius), pos.y + (cy * slimeSize.height), pos.z + (cz * slimeRadius))) {
+                                //too close to a solid, so stop here
+                                slime.discard();
+                                return TypedActionResult.success(itemStack, world.isClient());
+                            }
+                        }
+                    }
+                }
 
                 world.spawnEntity(slime);
+
+                user.getItemCooldownManager().set(this, 100);
 
                 itemStack.damage(1, user, (p) -> p.sendToolBreakStatus(hand));
             }
@@ -71,5 +87,10 @@ public class SlimeStaffItem extends Item {
         }
 
         return TypedActionResult.pass(itemStack);
+    }
+    
+    public boolean solidCheck(World world, double x, double y, double z) {
+        BlockPos blockPos = new BlockPos(new Vec3i((int)Math.floor(x), (int)Math.floor(y), (int)Math.floor(z)));
+        return world.getBlockState(blockPos).isSolidBlock(world, blockPos);
     }
 }

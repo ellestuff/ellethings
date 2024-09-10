@@ -11,6 +11,8 @@
   "entity.ellethings.firework_star": "Firework Star",
 
   "block.ellethings.gelatite_block": "Gelatite Block",
+  
+  "block.ellethings.coloured_lamp": "Colored Lamp",
 
-  "block.ellethings.coloured_lamp": "Colored Lamp"
+  "enchantment.ellethings.reaching": "Reaching"
 }

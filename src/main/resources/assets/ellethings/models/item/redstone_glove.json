@@ -1,0 +1,14 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ellethings:item/redstone_glove"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "powering": 1.0
+      },
+      "model": "item/redstone_glove_powered"
+    }
+  ]
+}

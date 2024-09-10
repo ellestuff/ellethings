@@ -24,8 +24,6 @@ public class ElleBlocks {
     public static final Block COLOURED_LAMP = registerBlock("coloured_lamp",
             new ColouredLampBlock(FabricBlockSettings.create().luminance(ColouredLampBlock.STATE_TO_LUMINANCE).strength(0.3F).sounds(BlockSoundGroup.GLASS).allowsSpawning(Blocks::always)));
 
-
-
     public static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(ElleThings.MODID, name), block);
@@ -37,10 +35,14 @@ public class ElleBlocks {
     }
 
     public static void registerElleBlocks() {
-    // Building Blocks
+        // Building Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {
             content.addAfter(Items.EMERALD_BLOCK, GELATITE_BLOCK);
         });
 
+        // Redstone
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> {
+            content.addAfter(Items.REDSTONE_LAMP, COLOURED_LAMP);
+        });
     }
 }

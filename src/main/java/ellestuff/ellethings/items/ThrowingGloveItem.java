@@ -23,12 +23,11 @@ import net.minecraft.world.World;
 
 public class ThrowingGloveItem extends RangedWeaponItem implements Vanishable {
 
-    public static final Predicate<ItemStack> THROWER_PROJECTILES = (stack) ->
-        stack.isOf(Items.SLIME_BALL) ||
-        stack.isOf(Items.SNOWBALL);
+    public final Predicate<ItemStack> THROWER_PROJECTILES;
 
-    public ThrowingGloveItem(Item.Settings settings) {
+    public ThrowingGloveItem(Item.Settings settings, Predicate<ItemStack> projectiles) {
         super(settings);
+        this.THROWER_PROJECTILES = projectiles;
     }
 
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {

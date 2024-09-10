@@ -70,6 +70,7 @@ public class SlimeStaffItem extends Item {
                         for (int cy = 0; cy <= 1; cy += 1) {
                             if (solidCheck(world, pos.x + (cx * slimeRadius), pos.y + (cy * slimeSize.height), pos.z + (cz * slimeRadius))) {
                                 //too close to a solid, so stop here
+                                slime.discard();
                                 return TypedActionResult.success(itemStack, world.isClient());
                             }
                         }

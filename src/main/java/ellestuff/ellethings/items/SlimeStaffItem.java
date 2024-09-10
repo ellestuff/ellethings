@@ -65,8 +65,8 @@ public class SlimeStaffItem extends Item {
                 EntityDimensions slimeSize = slime.getDimensions(slime.getPose());
                 double slimeRadius = slimeSize.width * 0.5;
                 
-                for (int cz = -1; cz <= 1; cz += 1) {
-                    for (int cx = -1; cx <= 1; cx += 1) {
+                for (int cz = -1; cz <= 1; cz += 2) {
+                    for (int cx = -1; cx <= 1; cx += 2) {
                         for (int cy = 0; cy <= 1; cy += 1) {
                             if (solidCheck(world, pos.x + (cx * slimeRadius), pos.y + (cy * slimeSize.height), pos.z + (cz * slimeRadius))) {
                                 //too close to a solid, so stop here

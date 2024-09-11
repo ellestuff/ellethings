@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "ellethings:block/coloured_lamp_pink"
+    "end": "ellethings:block/coloured_lamp_pink",
+    "side": "ellethings:block/coloured_lamp_pink_side"
   }
 }

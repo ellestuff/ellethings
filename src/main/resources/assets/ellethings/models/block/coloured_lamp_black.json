@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "ellethings:block/coloured_lamp_black",
-    "side": "ellethings:block/coloured_lamp_black_side"
-  }
-}

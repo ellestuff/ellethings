@@ -1,0 +1,6 @@
+{
+	"parent": "ellethings:block/redstone_transformer/base",
+	"textures": {
+		"torch": "block/redstone_torch_off"
+	}
+}

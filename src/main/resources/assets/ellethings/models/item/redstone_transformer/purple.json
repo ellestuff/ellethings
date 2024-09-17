@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ellethings:item/redstone_transformer/purple"
+  }
+}

@@ -8,7 +8,7 @@
       "predicate": {
         "powering": 1.0
       },
-      "model": "item/redstone_glove_powered"
+      "model": "ellethings:item/redstone_glove_powered"
     }
   ]
 }

@@ -32,6 +32,7 @@ public class ElleItems {
                     stack.isOf(Items.MAGMA_CREAM) ||
                     stack.isOf(Items.FIREWORK_STAR)));
 
+    // lol this doesn't work
     public static final Item REDSTONE_GLOVE = registerItem("redstone_glove", new RedstoneGloveItem(new FabricItemSettings()
             .maxCount(1)));
 
@@ -39,6 +40,11 @@ public class ElleItems {
     public static final Item SLIME_STAFF = registerItem("slime_staff", new SlimeStaffItem(new FabricItemSettings()
             .maxCount(1)
             .maxDamage(180)));
+
+    // Slime Staff
+    public static final Item MINING_BALL = registerItem("mining_ball", new MiningBallItem(new FabricItemSettings()
+            .maxCount(1)
+            .maxDamage(512)));
 
     // Regular ass items lmao
     public static final Item GELATITE = registerItem("gelatite", new Item(new Item.Settings()));
@@ -58,6 +64,11 @@ public class ElleItems {
         // Ingredients Group
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> {
             content.addAfter(Items.EMERALD, GELATITE);
+        });
+
+        // Tools Group
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> {
+            content.add(MINING_BALL);
         });
     }
 }

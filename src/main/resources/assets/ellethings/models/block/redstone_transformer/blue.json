@@ -1,0 +1,6 @@
+{
+	"parent": "ellethings:block/redstone_transformer/base",
+	"textures": {
+		"main": "ellethings:block/redstone_transformer/blue"
+	}
+}

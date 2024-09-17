@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "ellethings:block/coloured_lamp/green",
+    "side": "ellethings:block/coloured_lamp/green_side"
+  }
+}

@@ -1,0 +1,72 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 16],
+	"textures": {
+		"main": "ellethings:block/redstone_transformer/black",
+		"torch": "block/redstone_torch"
+	},
+	"elements": [
+		{
+			"from": [5, 1, 13],
+			"to": [7, 3, 17],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 8]},
+			"faces": {
+				"south": {"uv": [7, 6, 9, 8], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [4, 1, 13],
+			"to": [8, 3, 18],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 8]},
+			"faces": {
+				"up": {"uv": [6, 5, 10, 10], "rotation": 180, "texture": "#torch"},
+				"down": {"uv": [6, 5, 10, 10], "texture": "#torch"}
+			}
+		},
+		{
+			"from": [5, 0, 13],
+			"to": [7, 4, 18],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 8]},
+			"faces": {
+				"east": {"uv": [6, 5, 10, 10], "rotation": 270, "texture": "#torch"},
+				"west": {"uv": [6, 5, 10, 10], "rotation": 90, "texture": "#torch"}
+			}
+		},
+		{
+			"from": [3, 0, 1],
+			"to": [13, 4, 13],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [12, 0, 7, 4], "rotation": 180, "texture": "#main"},
+				"east": {"uv": [0, 4, 2, 16], "rotation": 270, "texture": "#main"},
+				"south": {"uv": [7, 4, 2, 0], "texture": "#main"},
+				"west": {"uv": [7, 4, 9, 16], "rotation": 90, "texture": "#main"},
+				"up": {"uv": [2, 4, 7, 16], "rotation": 180, "texture": "#main"},
+				"down": {"uv": [9, 4, 14, 16], "texture": "#main"}
+			}
+		}
+	],
+	"display": {
+		"fixed": {
+			"translation": [0, 0, -7]
+		}
+	},
+	"groups": [
+		{
+			"name": "group",
+			"origin": [3, 13, 7],
+			"color": 0,
+			"children": [
+				{
+					"name": "torch",
+					"origin": [3, 13, 7],
+					"color": 0,
+					"children": [0, 1, 2]
+				},
+				3
+			]
+		}
+	]
+}

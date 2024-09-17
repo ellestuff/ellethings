@@ -3,6 +3,7 @@
   "item.ellethings.netherite_throwing_glove": "Netherite Throwing Glove",
 
   "item.ellethings.slime_staff": "Slime Staff",
+  "item.ellethings.mining_ball": "Mining Orb",
 
   "item.ellethings.gelatite": "Gelatite",
 
@@ -11,8 +12,8 @@
   "entity.ellethings.firework_star": "Firework Star",
 
   "block.ellethings.gelatite_block": "Gelatite Block",
-  
   "block.ellethings.coloured_lamp": "Colored Lamp",
+  "block.ellethings.transformer": "Redstone Transformer",
 
   "enchantment.ellethings.reaching": "Reaching"
 }

@@ -17,6 +17,7 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
@@ -32,7 +33,7 @@ public class ElleBlocks {
 
     // Redstone Transformer (+ BlockItem)
     public static final Block TRANSFORMER = Registry.register(Registries.BLOCK, new Identifier(ElleThings.MODID, "transformer"),
-            new RedstoneTransformerBlock(FabricBlockSettings.create().noBlockBreakParticles().nonOpaque().notSolid().collidable(false)));
+            new RedstoneTransformerBlock(FabricBlockSettings.create().nonOpaque().notSolid()));
     public static final Item TRANSFORMER_ITEM = Registry.register(Registries.ITEM, new Identifier(ElleThings.MODID, "transformer"),
             new RedstoneTransformerItem(TRANSFORMER, new FabricItemSettings()));
 
@@ -53,7 +54,7 @@ public class ElleBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(TRANSFORMER, RenderLayer.getCutout());
 
         ModelPredicateProviderRegistry.register(TRANSFORMER_ITEM, new Identifier("power"),
-                (stack, world, entity, seed) -> ((RedstoneTransformerItem)stack.getItem()).getPower()
+                (stack, world, entity, seed) -> (float)RedstoneTransformerItem.getPower(stack)/20
         );
 
         // Building Blocks

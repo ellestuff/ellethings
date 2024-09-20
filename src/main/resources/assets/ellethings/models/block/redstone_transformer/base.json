@@ -2,6 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 16],
 	"textures": {
+		"particle": "ellethings:block/redstone_transformer/black",
 		"main": "ellethings:block/redstone_transformer/black",
 		"torch": "block/redstone_torch"
 	},

@@ -17,11 +17,13 @@ import org.slf4j.Logger;
 
 import static ellestuff.ellethings.blocks.ElleBlocks.registerElleBlocks;
 import static ellestuff.ellethings.items.ElleItems.registerElleItems;
+import static ellestuff.ellethings.networking.ElleNetworking.registerEllePackets;
 
 public class ElleThings implements ModInitializer {
     public static final String MODID = "ellethings";
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
-//test
+
+    // Projectiles
     public static final EntityType<SlimeBallEntity> SLIME_BALL_PROJECTILE = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(MODID, "slime_ball"),
@@ -43,9 +45,12 @@ public class ElleThings implements ModInitializer {
                     .dimensions(EntityDimensions.fixed(0.25F, 0.25F)).build()
     );
 
+
+
     @Override
     public void onInitialize() {
         registerElleItems();
         registerElleBlocks();
+        registerEllePackets();
     }
 }

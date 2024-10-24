@@ -1,20 +1,17 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "## ",
-        "###",
-        "GG "
+        "GGG",
+        "GGG",
+        "GGG"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:redstone_block"
-        },
         "G": {
             "item": "ellethings:gelatite"
         }
     },
     "result": {
-        "item": "ellethings:redstone_glove",
+        "item": "ellethings:gelatite_block",
         "count": 1
     }
 }

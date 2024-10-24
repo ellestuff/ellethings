@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "group": "c_tiles",
+    "pattern": [
+        "BC",
+        "CB"
+    ],
+    "key": {
+        "C": {
+            "item": "minecraft:cobbled_deepslate"
+        },
+        "B": {
+            "item": "minecraft:blackstone"
+        }
+    },
+    "result": {
+        "item": "ellethings:dark_checkered_tiles",
+        "count": 4
+    }
+}

@@ -32,10 +32,6 @@ public class ElleItems {
                     stack.isOf(Items.MAGMA_CREAM) ||
                     stack.isOf(Items.FIREWORK_STAR)));
 
-    // lol this doesn't work
-    public static final Item REDSTONE_GLOVE = registerItem("redstone_glove", new RedstoneGloveItem(new FabricItemSettings()
-            .maxCount(1)));
-
     // Slime Staff
     public static final Item SLIME_STAFF = registerItem("slime_staff", new SlimeStaffItem(new FabricItemSettings()
             .maxCount(1)

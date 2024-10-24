@@ -7,6 +7,7 @@ import net.minecraft.block.enums.WallMountLocation;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -18,6 +19,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 public class RedstoneTransformerBlock extends WallMountedBlock {
     public static final IntProperty POWER = Properties.POWER;
@@ -103,8 +107,8 @@ public class RedstoneTransformerBlock extends WallMountedBlock {
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         ItemStack stack = ElleBlocks.TRANSFORMER_ITEM.getDefaultStack();
 
-        stack.getOrCreateNbt().putInt("Power", state.get(POWER));
-
+        RedstoneTransformerItem.setPower(stack, state.get(POWER));
+        
         return stack;
     }
 
@@ -138,5 +142,13 @@ public class RedstoneTransformerBlock extends WallMountedBlock {
         }
 
         return shape;
+    }
+
+    @Override
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+        ItemStack stack = ElleBlocks.TRANSFORMER_ITEM.getDefaultStack();
+        RedstoneTransformerItem.setPower(stack, state.get(POWER));
+
+        return Collections.singletonList(stack);
     }
 }

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "group": "boards",
+    "pattern": [
+        "__",
+        "__"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:bamboo_slab"
+        }
+    },
+    "result": {
+        "item": "ellethings:bamboo_boards",
+        "count": 2
+    }
+}

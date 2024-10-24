@@ -21,10 +21,5 @@ public class ElleClient implements ClientModInitializer {
         EntityRendererRegistry.register(SLIME_BALL_PROJECTILE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(MAGMA_CREAM_PROJECTILE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(FIREWORK_STAR_PROJECTILE, FlyingItemEntityRenderer::new);
-
-        ModelPredicateProviderRegistry.register(
-                REDSTONE_GLOVE, new Identifier("powering"),
-                (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F
-        );
     }
 }

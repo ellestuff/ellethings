@@ -12,8 +12,25 @@
   "entity.ellethings.firework_star": "Firework Star",
 
   "block.ellethings.gelatite_block": "Gelatite Block",
+
+  "block.ellethings.checkered_tiles": "Checkered Tiles",
+  "block.ellethings.dark_checkered_tiles": "Dark Checkered Tiles",
+  "block.ellethings.kitchen_tiles": "Kitchen Tiles",
+
   "block.ellethings.coloured_lamp": "Colored Lamp",
   "block.ellethings.transformer": "Redstone Transformer",
+
+  "block.ellethings.acacia_boards": "Acacia Boards",
+  "block.ellethings.bamboo_boards": "Bamboo Boards",
+  "block.ellethings.birch_boards": "Birch Boards",
+  "block.ellethings.cherry_boards": "Cherry Boards",
+  "block.ellethings.crimson_boards": "Crimson Boards",
+  "block.ellethings.dark_oak_boards": "Dark Oak Boards",
+  "block.ellethings.jungle_boards": "Jungle Boards",
+  "block.ellethings.mangrove_boards": "Mangrove Boards",
+  "block.ellethings.oak_boards": "Oak Boards",
+  "block.ellethings.spruce_boards": "Spruce Boards",
+  "block.ellethings.warped_boards": "Warped Boards",
 
   "enchantment.ellethings.reaching": "Reaching"
 }

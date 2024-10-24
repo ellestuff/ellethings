@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "group": "boards",
+    "pattern": [
+        "__",
+        "__"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:spruce_slab"
+        }
+    },
+    "result": {
+        "item": "ellethings:spruce_boards",
+        "count": 2
+    }
+}

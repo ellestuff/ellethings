@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "group": "c_tiles",
+    "pattern": [
+        "TC",
+        "CT"
+    ],
+    "key": {
+        "C": {
+            "item": "minecraft:calcite"
+        },
+        "T": {
+            "item": "minecraft:tuff"
+        }
+    },
+    "result": {
+        "item": "ellethings:checkered_tiles",
+        "count": 4
+    }
+}

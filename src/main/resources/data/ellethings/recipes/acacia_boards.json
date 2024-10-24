@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "group": "boards",
+    "pattern": [
+        "__",
+        "__"
+    ],
+    "key": {
+        "_": {
+            "item": "minecraft:acacia_slab"
+        }
+    },
+    "result": {
+        "item": "ellethings:acacia_boards",
+        "count": 2
+    }
+}

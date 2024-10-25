@@ -20,7 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import static ellestuff.ellethings.ElleThings.MAGMA_CREAM_PROJECTILE;
+import static ellestuff.ellethings.entities.ElleEntities.MAGMA_CREAM_PROJECTILE;
 
 public class MagmaCreamEntity extends ThrownItemEntity {
 

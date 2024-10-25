@@ -6,6 +6,8 @@
   "item.ellethings.mining_ball": "Mining Orb",
 
   "item.ellethings.gelatite": "Gelatite",
+  "item.ellethings.gel_ball": "Gel Ball",
+  "item.ellethings.gel_bottle": "Gel Bottle",
 
   "entity.ellethings.slime_ball": "Slimeball",
   "entity.ellethings.magma_cream": "Magma Cream",
@@ -32,5 +34,7 @@
   "block.ellethings.spruce_boards": "Spruce Boards",
   "block.ellethings.warped_boards": "Warped Boards",
 
-  "enchantment.ellethings.reaching": "Reaching"
+  "enchantment.ellethings.reaching": "Reaching",
+
+  "effect.ellethings.lucidity": "Lucidity"
 }

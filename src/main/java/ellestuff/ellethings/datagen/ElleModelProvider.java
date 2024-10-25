@@ -39,6 +39,8 @@ public class ElleModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ElleItems.GELATITE, Models.GENERATED);
+        itemModelGenerator.register(ElleItems.GEL_BALL, Models.GENERATED);
+        itemModelGenerator.register(ElleItems.GEL_BOTTLE, Models.GENERATED);
         itemModelGenerator.register(ElleItems.MINING_BALL, Models.GENERATED);
 
         itemModelGenerator.register(ElleItems.THROWING_GLOVE, Models.HANDHELD);

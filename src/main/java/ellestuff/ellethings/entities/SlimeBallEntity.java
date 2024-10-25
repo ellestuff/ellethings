@@ -21,7 +21,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import static ellestuff.ellethings.ElleThings.SLIME_BALL_PROJECTILE;
+import static ellestuff.ellethings.entities.ElleEntities.SLIME_BALL_PROJECTILE;
 
 public class SlimeBallEntity extends ThrownItemEntity {
 

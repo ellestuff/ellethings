@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 import java.util.Iterator;
 import java.util.List;
 
-import static ellestuff.ellethings.ElleThings.FIREWORK_STAR_PROJECTILE;
+import static ellestuff.ellethings.entities.ElleEntities.FIREWORK_STAR_PROJECTILE;
 import static java.lang.Math.random;
 
 public class FireworkStarEntity extends ThrownItemEntity {

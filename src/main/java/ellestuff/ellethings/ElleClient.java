@@ -7,10 +7,7 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.util.Identifier;
 
-import static ellestuff.ellethings.ElleThings.*;
-//import static ellestuff.ellethings.blocks.CanvasBlock.*;
-import static ellestuff.ellethings.blocks.ElleBlocks.*;
-import static ellestuff.ellethings.items.ElleItems.*;
+import static ellestuff.ellethings.entities.ElleEntities.*;
 
 public class ElleClient implements ClientModInitializer {
     /**

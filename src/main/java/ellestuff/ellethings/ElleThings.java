@@ -1,5 +1,6 @@
 package ellestuff.ellethings;
 
+import ellestuff.ellethings.dimension.MallChunkGenerator;
 import ellestuff.ellethings.entities.FireworkStarEntity;
 import ellestuff.ellethings.entities.MagmaCreamEntity;
 import ellestuff.ellethings.entities.SlimeBallEntity;
@@ -28,5 +29,7 @@ public class ElleThings implements ModInitializer {
         registerElleItems();
         registerElleBlocks();
         registerEllePackets();
+
+        Registry.register(Registries.CHUNK_GENERATOR, new Identifier(ElleThings.MODID, "mall"), MallChunkGenerator.CODEC);
     }
 }

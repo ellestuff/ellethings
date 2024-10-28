@@ -69,11 +69,11 @@ public class ElleBlocks {
 
     public static void registerElleBlocks() {
         // Texture Stuff
-        //BlockRenderLayerMap.INSTANCE.putBlock(TRANSFORMER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(TRANSFORMER, RenderLayer.getCutout());
 
-        /*ModelPredicateProviderRegistry.register(TRANSFORMER_ITEM, new Identifier("power"),
+        ModelPredicateProviderRegistry.register(TRANSFORMER_ITEM, new Identifier("power"),
                 (stack, world, entity, seed) -> (float)RedstoneTransformerItem.getPower(stack)/20
-        );*/
+        );
 
         // Building Blocks
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(content -> {

@@ -37,16 +37,11 @@ public class ElleItems {
             .maxCount(1)
             .maxDamage(180)));
 
-    // Slime Staff
-    public static final Item MINING_BALL = registerItem("mining_ball", new MiningBallItem(new FabricItemSettings()
-            .maxCount(1)
-            .maxDamage(512)));
-
     // Regular ass items lmao
     public static final Item GELATITE = registerItem("gelatite", new Item(new Item.Settings()));
     public static final Item GEL_BALL = registerItem("gel_ball", new Item(new Item.Settings()));
 
-    public static final Item GEL_BOTTLE = registerItem("gel_bottle", new Item(new Item.Settings()
+    public static final Item GEL_BOTTLE = registerItem("gel_bottle", new GelBottleItem(new Item.Settings()
             .maxCount(16)
             .food(new FoodComponent.Builder()
                     .alwaysEdible()
@@ -69,11 +64,6 @@ public class ElleItems {
         // Ingredients Group
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(content -> {
             content.addAfter(Items.EMERALD, GELATITE);
-        });
-
-        // Tools Group
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> {
-            content.add(MINING_BALL);
         });
     }
 }

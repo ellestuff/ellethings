@@ -1,0 +1,8 @@
+{
+  "type": "ellethings:mall",
+  "generator": {
+    "type": "ellethings:mall",
+    "settings": {
+      "biome": "minecraft:the_void"
+    }
+}

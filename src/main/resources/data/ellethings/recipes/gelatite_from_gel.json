@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GGG",
+        "GEG",
+        "GGG"
+    ],
+    "key": {
+        "E": {
+            "item": "minecraft:emerald"
+        },
+        "G": {
+            "item": "ellethings:gel_ball"
+        }
+    },
+    "result": {
+        "item": "ellethings:gelatite",
+        "count": 1
+    }
+}

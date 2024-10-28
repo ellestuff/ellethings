@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GGG",
+        "GBG",
+        "GGG"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:glass_bottle"
+        },
+        "G": {
+            "item": "ellethings:gel_ball"
+        }
+    },
+    "result": {
+        "item": "ellethings:gel_bottle",
+        "count": 1
+    }
+}

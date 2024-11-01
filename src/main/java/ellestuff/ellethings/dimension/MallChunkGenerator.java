@@ -1,6 +1,7 @@
 package ellestuff.ellethings.dimension;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkRegion;
 import net.minecraft.world.HeightLimitView;
@@ -20,6 +21,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 public class MallChunkGenerator extends ChunkGenerator {
+    public static final Codec<MallChunkGenerator> CODEC = RecordCodecBuilder.create(instance ->
+            instance.group(
+                    BiomeSource.CODEC.fieldOf("biome_source").forGetter(MallChunkGenerator::getBiomeSource)
+            ).apply(instance, MallChunkGenerator::new));
+
     public MallChunkGenerator(BiomeSource biomeSource) {
         super(biomeSource);
     }
@@ -30,24 +36,16 @@ public class MallChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void carve(ChunkRegion chunkRegion, long seed, NoiseConfig noiseConfig, BiomeAccess biomeAccess, StructureAccessor structureAccessor, Chunk chunk, GenerationStep.Carver carverStep) {
-
-    }
+    public void carve(ChunkRegion chunkRegion, long seed, NoiseConfig noiseConfig, BiomeAccess biomeAccess, StructureAccessor structureAccessor, Chunk chunk, GenerationStep.Carver carverStep) {}
 
     @Override
-    public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk) {
-
-    }
+    public void buildSurface(ChunkRegion region, StructureAccessor structures, NoiseConfig noiseConfig, Chunk chunk) {}
 
     @Override
-    public void populateEntities(ChunkRegion region) {
-
-    }
+    public void populateEntities(ChunkRegion region) {}
 
     @Override
-    public int getWorldHeight() {
-        return 0;
-    }
+    public int getWorldHeight() { return 64; }
 
     @Override
     public CompletableFuture<Chunk> populateNoise(Executor executor, Blender blender, NoiseConfig noiseConfig, StructureAccessor structureAccessor, Chunk chunk) {
@@ -55,19 +53,13 @@ public class MallChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public int getSeaLevel() {
-        return 0;
-    }
+    public int getSeaLevel() { return 0; }
 
     @Override
-    public int getMinimumY() {
-        return 0;
-    }
+    public int getMinimumY() { return 0; }
 
     @Override
-    public int getHeight(int x, int z, Heightmap.Type heightmap, HeightLimitView world, NoiseConfig noiseConfig) {
-        return 0;
-    }
+    public int getHeight(int x, int z, Heightmap.Type heightmap, HeightLimitView world, NoiseConfig noiseConfig) { return 0; }
 
     @Override
     public VerticalBlockSample getColumnSample(int x, int z, HeightLimitView world, NoiseConfig noiseConfig) {
@@ -75,7 +67,10 @@ public class MallChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void getDebugHudText(List<String> text, NoiseConfig noiseConfig, BlockPos pos) {
-
+    public int getSpawnHeight(HeightLimitView world) {
+        return 16;
     }
+
+    @Override
+    public void getDebugHudText(List<String> text, NoiseConfig noiseConfig, BlockPos pos) {}
 }

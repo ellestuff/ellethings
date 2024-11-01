@@ -1,6 +1,5 @@
 package ellestuff.ellethings.blocks;
 
-import ellestuff.ellethings.items.ElleItems;
 import ellestuff.ellethings.items.RedstoneTransformerItem;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.WallMountLocation;

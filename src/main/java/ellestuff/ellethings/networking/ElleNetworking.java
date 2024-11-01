@@ -2,9 +2,7 @@ package ellestuff.ellethings.networking;
 
 import ellestuff.ellethings.ElleThings;
 import ellestuff.ellethings.items.RedstoneTransformerItem;
-import io.netty.channel.ChannelHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 

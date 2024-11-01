@@ -1,8 +1,10 @@
 {
-  "type": "ellethings:mall",
+  "type": "minecraft:overworld",
   "generator": {
     "type": "ellethings:mall",
-    "settings": {
+    "biome_source": {
+      "type": "minecraft:fixed",
       "biome": "minecraft:the_void"
     }
+  }
 }

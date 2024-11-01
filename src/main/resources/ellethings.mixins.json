@@ -4,9 +4,9 @@
   "package": "ellestuff.ellethings.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "RedstoneTransformerMixin"
   ],
   "client": [
+    "RedstoneTransformerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
